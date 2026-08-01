@@ -8,8 +8,8 @@ export const siteConfig = {
   subheadline:
     "AI & Data Science Student exploring AI Automations, Open Source, and Modern Web Technologies.",
   email: "medabalimieswarprasad@gmail.com",
-  linkedin: "https://linkedin.com/in/eswarprasad",
-  github: "https://github.com/eswarprasad",
+  linkedin: "https://www.linkedin.com/in/eswar-p-3a490b2bb",
+  github: "https://github.com/IshwarSid/",
   college: "Seshadri Gudlavalleru Engineering College",
   branch: "Artificial Intelligence & Data Science",
   location: "India",

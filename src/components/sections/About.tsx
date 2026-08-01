@@ -2,6 +2,9 @@
 
 import { Reveal } from "@/components/ui/Animations";
 import { siteConfig } from "@/lib/data";
+import { motion } from "framer-motion";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 
 export default function About() {
   return (
@@ -91,8 +94,50 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* Fun facts row */}
+          {/* Social Buttons */}
           <Reveal delay={0.6}>
+            <div style={{ display: "flex", gap: "12px", marginTop: "32px", flexWrap: "wrap" }}>
+              <motion.a
+                href={siteConfig.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none" }}
+              >
+                <GithubIcon size={18} />
+                <span>GitHub</span>
+              </motion.a>
+
+              <motion.a
+                href={siteConfig.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none" }}
+              >
+                <LinkedinIcon size={18} />
+                <span>LinkedIn</span>
+              </motion.a>
+
+              <motion.a
+                href={`mailto:${siteConfig.email}`}
+                className="btn-secondary"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none" }}
+              >
+                <Mail size={18} />
+                <span>Email</span>
+              </motion.a>
+            </div>
+          </Reveal>
+
+          {/* Fun facts row */}
+          <Reveal delay={0.7}>
             <div
               style={{
                 display: "grid",
