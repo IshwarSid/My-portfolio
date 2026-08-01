@@ -46,6 +46,7 @@ export const metadata: Metadata = {
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Analytics } from '@vercel/analytics/next';
 
 export default function RootLayout({
   children,
@@ -91,6 +92,7 @@ export default function RootLayout({
         <Footer />
         {/* Noise overlay for texture */}
         <div className="noise-overlay" aria-hidden="true" />
+        <Analytics />
       </body>
     </html>
   );
