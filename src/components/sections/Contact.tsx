@@ -1,7 +1,5 @@
-"use client";
-
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/ui/Animations";
 import { siteConfig } from "@/lib/data";
 import { Send, Mail, Download, CheckCircle } from "lucide-react";
@@ -48,8 +46,7 @@ export default function Contact() {
         <Reveal delay={0.3}>
           <form
             onSubmit={handleSubmit}
-            className="glass-card"
-            style={{ padding: "32px", marginTop: "36px" }}
+            className="glowing-border-card"
           >
             <div className="contact-form-grid">
               <div className="contact-field">
@@ -97,22 +94,31 @@ export default function Contact() {
               type="submit"
               className="btn-primary"
               style={{ marginTop: 24, width: "100%", justifyContent: "center" }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
             >
-              <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                {isSent ? (
-                  <>
-                    <CheckCircle size={16} />
-                    Sent!
-                  </>
-                ) : (
-                  <>
-                    <Send size={16} />
-                    Send Message
-                  </>
-                )}
-              </span>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={isSent ? "sent" : "send"}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ display: "flex", alignItems: "center", gap: 8 }}
+                >
+                  {isSent ? (
+                    <>
+                      <CheckCircle size={16} />
+                      Sent!
+                    </>
+                  ) : (
+                    <>
+                      <Send size={16} />
+                      Send Message
+                    </>
+                  )}
+                </motion.span>
+              </AnimatePresence>
             </motion.button>
           </form>
         </Reveal>
@@ -123,8 +129,8 @@ export default function Contact() {
             <motion.a
               href={`mailto:${siteConfig.email}`}
               className="contact-link-card glass-card"
-              whileHover={{ y: -4, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
               <Mail size={20} style={{ color: "var(--primary-light)" }} />
               <span>Email</span>
@@ -135,8 +141,8 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className="contact-link-card glass-card"
-              whileHover={{ y: -4, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
               <LinkedinIcon size={20} style={{ color: "var(--primary-light)" }} />
               <span>LinkedIn</span>
@@ -147,8 +153,8 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className="contact-link-card glass-card"
-              whileHover={{ y: -4, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
               <GithubIcon size={20} style={{ color: "var(--primary-light)" }} />
               <span>GitHub</span>
@@ -157,8 +163,8 @@ export default function Contact() {
             <motion.a
               href={siteConfig.resumeUrl}
               className="contact-link-card glass-card"
-              whileHover={{ y: -4, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
               <Download size={20} style={{ color: "var(--primary-light)" }} />
               <span>Resume</span>
@@ -168,6 +174,57 @@ export default function Contact() {
       </div>
 
       <style jsx global>{`
+        @keyframes rotateGlow {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        .glowing-border-card {
+          position: relative;
+          z-index: 1;
+          border-radius: var(--radius-lg);
+          background: var(--glass);
+          padding: 32px;
+          margin-top: 36px;
+          overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          border: 1px solid var(--glass-border);
+        }
+        .glowing-border-card::before {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: conic-gradient(
+            from 0deg,
+            transparent 20%,
+            var(--primary) 50%,
+            var(--secondary) 80%,
+            transparent 100%
+          );
+          animation: rotateGlow 8s linear infinite;
+          z-index: -1;
+          opacity: 0.15;
+          transition: opacity 0.5s ease;
+          pointer-events: none;
+        }
+        .glowing-border-card:hover {
+          box-shadow: var(--shadow-glow);
+          border-color: rgba(124, 92, 255, 0.15);
+        }
+        .glowing-border-card:hover::before {
+          opacity: 0.45;
+        }
+        .glowing-border-card::after {
+          content: "";
+          position: absolute;
+          inset: 1px;
+          background: var(--surface);
+          border-radius: calc(var(--radius-lg) - 1px);
+          z-index: -1;
+          opacity: 0.96;
+        }
         .contact-form-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -182,24 +239,30 @@ export default function Contact() {
           font-size: 0.8rem;
           font-weight: 500;
           color: var(--text-muted);
+          transition: color 0.3s ease;
+        }
+        .contact-field:focus-within .contact-label {
+          color: var(--primary-light);
         }
         .contact-input {
           padding: 12px 16px;
-          background: rgba(255, 255, 255, 0.03);
+          background: rgba(255, 255, 255, 0.02);
           border: 1px solid var(--border-light);
           border-radius: var(--radius-md);
           color: var(--text);
           font-family: 'Inter', sans-serif;
           font-size: 0.9rem;
           outline: none;
-          transition: all 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .contact-input::placeholder {
           color: var(--text-dim);
         }
         .contact-input:focus {
           border-color: var(--primary);
-          box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.1);
+          box-shadow: 0 0 16px rgba(124, 92, 255, 0.25);
+          transform: translateY(-2px);
+          background: rgba(255, 255, 255, 0.04);
         }
         .contact-textarea {
           resize: vertical;
@@ -222,10 +285,12 @@ export default function Contact() {
           font-size: 0.85rem;
           font-weight: 500;
           cursor: pointer;
-          transition: color 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .contact-link-card:hover {
           color: var(--text);
+          box-shadow: 0 0 25px rgba(124, 92, 255, 0.2);
+          border-color: var(--primary-light);
         }
         @media (max-width: 640px) {
           .contact-form-grid { grid-template-columns: 1fr; }
