@@ -181,7 +181,11 @@ export default function About() {
           border: 1px solid var(--glass-border);
           box-shadow: var(--shadow-md);
           transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          background: var(--glass);
+          background: #000000;
+        }
+        [data-theme="light"] .avatar-wrapper {
+          border-color: rgba(0, 0, 0, 0.12);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
         }
         .avatar-wrapper::before {
           content: "";
@@ -198,6 +202,9 @@ export default function About() {
           -webkit-mask-composite: xor;
           mask-composite: exclude;
         }
+        [data-theme="light"] .avatar-wrapper::before {
+          opacity: 0.15;
+        }
         .avatar-wrapper:hover {
           transform: scale(1.03) translateY(-4px);
           box-shadow: var(--shadow-glow);
@@ -211,7 +218,7 @@ export default function About() {
           height: 100%;
           object-fit: cover;
           border-radius: calc(var(--radius-lg) - 2px);
-          background: #000;
+          background: #000000;
         }
         @media (max-width: 868px) {
           .about-content-grid {
