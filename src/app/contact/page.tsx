@@ -1,7 +1,7 @@
 "use client";
 
 import Contact from "@/components/sections/Contact";
-import Balatro from "@/components/ui/backgrounds/Balatro/Balatro";
+import Threads from "@/components/ui/backgrounds/Threads/Threads";
 
 export default function ContactPage() {
   return (
@@ -14,19 +14,14 @@ export default function ContactPage() {
           pointerEvents: "none",
           width: "100vw",
           height: "100vh",
-          opacity: 0.3
+          opacity: 0.35
         }}
       >
-        <Balatro 
-          spinRotation={-1.5}
-          spinSpeed={2.5}
-          color1="#7C5CFF"
-          color2="#36C2FF"
-          color3="#08090A"
-          contrast={2.8}
-          lighting={0.3}
-          spinAmount={0.2}
-          mouseInteraction={true}
+        <Threads 
+          color={[0.48, 0.36, 1.0]} 
+          amplitude={1.0} 
+          distance={0.4} 
+          enableMouseInteraction={true} 
         />
       </div>
 

@@ -26,9 +26,11 @@ export default function Navbar() {
     if (stored === "light") {
       setIsDark(false);
       document.documentElement.setAttribute("data-theme", "light");
+      document.documentElement.classList.remove("dark");
     } else {
       setIsDark(true);
       document.documentElement.setAttribute("data-theme", "dark");
+      document.documentElement.classList.add("dark");
     }
   }, []);
 
@@ -36,6 +38,11 @@ export default function Navbar() {
     const next = !isDark;
     setIsDark(next);
     document.documentElement.setAttribute("data-theme", next ? "dark" : "light");
+    if (next) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
     localStorage.setItem("theme", next ? "dark" : "light");
   };
 

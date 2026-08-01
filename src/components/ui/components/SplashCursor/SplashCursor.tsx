@@ -1005,8 +1005,13 @@ function SplashCursor({
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
       if (!firstMouseMoveHandled) {
-        let color = generateColor();
-        updatePointerMoveData(pointer, posX, posY, color);
+        pointer.texcoordX = posX / canvas.width;
+        pointer.texcoordY = 1.0 - posY / canvas.height;
+        pointer.prevTexcoordX = pointer.texcoordX;
+        pointer.prevTexcoordY = pointer.texcoordY;
+        pointer.deltaX = 0;
+        pointer.deltaY = 0;
+        pointer.color = generateColor();
         firstMouseMoveHandled = true;
       } else {
         updatePointerMoveData(pointer, posX, posY, pointer.color);
