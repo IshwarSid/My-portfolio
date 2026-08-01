@@ -24,7 +24,7 @@ export default function AboutPage() {
       {/* Dynamic colorful fluid splash trails */}
       <SplashCursor DENSITY_DISSIPATION={3.0} CURL={4} SPLAT_RADIUS={0.18} />
 
-      <main style={{ paddingTop: "100px", minHeight: "100vh" }}>
+      <main style={{ minHeight: "100vh" }}>
         <About />
       </main>
     </>

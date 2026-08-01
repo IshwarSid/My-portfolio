@@ -5,21 +5,21 @@ import { siteConfig } from "@/lib/data";
 
 export default function About() {
   return (
-    <section id="about" className="section" style={{ position: "relative" }}>
-      <div className="container" style={{ maxWidth: "1000px" }}>
-        <Reveal>
-          <span className="section-label">About</span>
-        </Reveal>
+    <section id="about" className="about-section">
+      <div className="about-split-container">
+        {/* Left Column: Text Content */}
+        <div className="about-text-column">
+          <Reveal>
+            <span className="section-label">About</span>
+          </Reveal>
 
-        <Reveal delay={0.1}>
-          <h2 className="section-title">
-            Curiosity is my <span className="gradient-text">compass</span>.
-          </h2>
-        </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="section-title">
+              Curiosity is my <span className="gradient-text">compass</span>.
+            </h2>
+          </Reveal>
 
-        <div className="about-content-grid" style={{ marginTop: "32px" }}>
-          {/* Left Column: Text */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px", marginTop: "32px" }}>
             <Reveal delay={0.2}>
               <p
                 style={{
@@ -91,146 +91,134 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* Right Column: Video Avatar */}
-          <div className="about-avatar-container">
-            <Reveal delay={0.3}>
-              <div className="avatar-wrapper">
-                <video
-                  src="/avatar.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="avatar-video"
-                />
-              </div>
-            </Reveal>
-          </div>
+          {/* Fun facts row */}
+          <Reveal delay={0.6}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                gap: "16px",
+                marginTop: "56px",
+              }}
+            >
+              {[
+                { label: "Focus Area", value: "AI & Automation" },
+                { label: "Current Goal", value: "SIH 2025" },
+                { label: "Approach", value: "Build to Learn" },
+                { label: "Mindset", value: "Always Exploring" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="glass-card"
+                  style={{
+                    padding: "20px",
+                    textAlign: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "0.75rem",
+                      color: "var(--text-dim)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    {item.label}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "0.95rem",
+                      fontWeight: 600,
+                      color: "var(--text)",
+                    }}
+                  >
+                    {item.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
 
-        {/* Fun facts row */}
-        <Reveal delay={0.6}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-              gap: "16px",
-              marginTop: "56px",
-            }}
-          >
-            {[
-              { label: "Focus Area", value: "AI & Automation" },
-              { label: "Current Goal", value: "SIH 2025" },
-              { label: "Approach", value: "Build to Learn" },
-              { label: "Mindset", value: "Always Exploring" },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="glass-card"
-                style={{
-                  padding: "20px",
-                  textAlign: "center",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "0.75rem",
-                    color: "var(--text-dim)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    marginBottom: "6px",
-                  }}
-                >
-                  {item.label}
-                </div>
-                <div
-                  style={{
-                    fontSize: "0.95rem",
-                    fontWeight: 600,
-                    color: "var(--text)",
-                  }}
-                >
-                  {item.value}
-                </div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+        {/* Right Column: Full-height Video Column */}
+        <div className="about-video-column">
+          <video
+            src="/avatar.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="about-full-video"
+          />
+        </div>
       </div>
 
       <style jsx global>{`
-        .about-content-grid {
-          display: grid;
-          grid-template-columns: 1.15fr 0.85fr;
-          gap: 48px;
-          align-items: center;
-        }
-        .about-avatar-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-        }
-        .avatar-wrapper {
+        .about-section {
           position: relative;
           width: 100%;
-          max-width: 440px;
-          aspect-ratio: 16 / 9;
-          border-radius: var(--radius-lg);
-          overflow: hidden;
-          border: 1px solid var(--glass-border);
-          box-shadow: var(--shadow-md);
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          min-height: 100vh;
+          overflow-x: hidden;
+        }
+        .about-split-container {
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          min-height: 100vh;
+          width: 100vw;
+          margin: 0;
+          padding: 0;
+        }
+        .about-text-column {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 140px 80px 80px 8%;
+          min-height: 100vh;
+        }
+        .about-video-column {
+          position: relative;
+          height: 100vh;
+          width: 100%;
           background: #000000;
+          overflow: hidden;
+          border-left: 1px solid var(--border-light);
         }
-        [data-theme="light"] .avatar-wrapper {
-          border-color: rgba(0, 0, 0, 0.12);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        [data-theme="light"] .about-video-column {
+          border-left: 1px solid rgba(0, 0, 0, 0.1);
         }
-        .avatar-wrapper::before {
-          content: "";
-          position: absolute;
-          inset: 0px;
-          border-radius: var(--radius-lg);
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
-          z-index: -1;
-          opacity: 0.3;
-          transition: opacity 0.5s ease;
-          padding: 2px;
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-        }
-        [data-theme="light"] .avatar-wrapper::before {
-          opacity: 0.15;
-        }
-        .avatar-wrapper:hover {
-          transform: scale(1.03) translateY(-4px);
-          box-shadow: var(--shadow-glow);
-          border-color: transparent;
-        }
-        .avatar-wrapper:hover::before {
-          opacity: 1;
-        }
-        .avatar-video {
+        .about-full-video {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: calc(var(--radius-lg) - 2px);
-          background: #000000;
+          object-position: center;
+        }
+        @media (max-width: 1200px) {
+          .about-split-container {
+            grid-template-columns: 1.1fr 0.9fr;
+          }
+          .about-text-column {
+            padding: 140px 48px 80px 6%;
+          }
         }
         @media (max-width: 868px) {
-          .about-content-grid {
+          .about-split-container {
             grid-template-columns: 1fr;
-            gap: 36px;
+            min-height: auto;
           }
-          .about-avatar-container {
+          .about-text-column {
+            min-height: auto;
+            padding: 120px 24px 60px 24px;
+          }
+          .about-video-column {
+            height: 50vh;
+            width: 100vw;
             order: -1;
-            margin-bottom: 12px;
+            border-left: none;
+            border-bottom: 1px solid var(--border-light);
           }
-          .avatar-wrapper {
-            max-width: 360px;
+          [data-theme="light"] .about-video-column {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
           }
         }
       `}</style>
