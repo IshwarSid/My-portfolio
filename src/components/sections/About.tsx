@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/data";
 export default function About() {
   return (
     <section id="about" className="section" style={{ position: "relative" }}>
-      <div className="container" style={{ maxWidth: "800px" }}>
+      <div className="container" style={{ maxWidth: "1000px" }}>
         <Reveal>
           <span className="section-label">About</span>
         </Reveal>
@@ -17,76 +17,95 @@ export default function About() {
           </h2>
         </Reveal>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px", marginTop: "32px" }}>
-          <Reveal delay={0.2}>
-            <p
-              style={{
-                fontSize: "1.15rem",
-                fontWeight: 500,
-                color: "var(--text)",
-                lineHeight: 1.85,
-              }}
-            >
-              I&apos;m an AI & Data Science student at{" "}
-              <span style={{ color: "var(--primary)", fontWeight: 700 }}>{siteConfig.college}</span>,
-              and I spend most of my time wondering, &ldquo;What if we could make this smarter?&rdquo;
-            </p>
-          </Reveal>
+        <div className="about-content-grid" style={{ marginTop: "32px" }}>
+          {/* Left Column: Text */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+            <Reveal delay={0.2}>
+              <p
+                style={{
+                  fontSize: "1.15rem",
+                  fontWeight: 500,
+                  color: "var(--text)",
+                  lineHeight: 1.85,
+                }}
+              >
+                I&apos;m an AI & Data Science student at{" "}
+                <span style={{ color: "var(--primary)", fontWeight: 700 }}>{siteConfig.college}</span>,
+                and I spend most of my time wondering, &ldquo;What if we could make this smarter?&rdquo;
+              </p>
+            </Reveal>
 
-          <Reveal delay={0.3}>
-            <p
-              style={{
-                fontSize: "1.15rem",
-                fontWeight: 500,
-                color: "var(--text)",
-                lineHeight: 1.85,
-              }}
-            >
-              I&apos;m not the kind of person who waits for a curriculum to tell me what to learn.
-              When AI agents started becoming mainstream, I was already tinkering with{" "}
-              <span style={{ color: "var(--primary-light)", fontWeight: 700 }}>MCP</span>,{" "}
-              <span style={{ color: "var(--primary-light)", fontWeight: 700 }}>n8n</span>, and{" "}
-              <span style={{ color: "var(--primary-light)", fontWeight: 700 }}>multi-model workflows</span>
-              — connecting tools, automating processes, and trying to build things that
-              genuinely save time.
-            </p>
-          </Reveal>
+            <Reveal delay={0.3}>
+              <p
+                style={{
+                  fontSize: "1.15rem",
+                  fontWeight: 500,
+                  color: "var(--text)",
+                  lineHeight: 1.85,
+                }}
+              >
+                I&apos;m not the kind of person who waits for a curriculum to tell me what to learn.
+                When AI agents started becoming mainstream, I was already tinkering with{" "}
+                <span style={{ color: "var(--primary-light)", fontWeight: 700 }}>MCP</span>,{" "}
+                <span style={{ color: "var(--primary-light)", fontWeight: 700 }}>n8n</span>, and{" "}
+                <span style={{ color: "var(--primary-light)", fontWeight: 700 }}>multi-model workflows</span>
+                — connecting tools, automating processes, and trying to build things that
+                genuinely save time.
+              </p>
+            </Reveal>
 
-          <Reveal delay={0.4}>
-            <p
-              style={{
-                fontSize: "1.15rem",
-                fontWeight: 500,
-                color: "var(--text)",
-                lineHeight: 1.85,
-              }}
-            >
-              I believe the best way to learn is to build. Whether it&apos;s a carbon credit
-              platform, an AI story generator, or automation workflows — every project
-              teaches me something textbooks can&apos;t. I&apos;m especially drawn to the
-              intersection of{" "}
-              <span style={{ color: "var(--primary-light)", fontWeight: 700 }}>AI and developer tooling</span> —
-              where intelligent systems meet practical utility.
-            </p>
-          </Reveal>
+            <Reveal delay={0.4}>
+              <p
+                style={{
+                  fontSize: "1.15rem",
+                  fontWeight: 500,
+                  color: "var(--text)",
+                  lineHeight: 1.85,
+                }}
+              >
+                I believe the best way to learn is to build. Whether it&apos;s a carbon credit
+                platform, an AI story generator, or automation workflows — every project
+                teaches me something textbooks can&apos;t. I&apos;m especially drawn to the
+                intersection of{" "}
+                <span style={{ color: "var(--primary-light)", fontWeight: 700 }}>AI and developer tooling</span> —
+                where intelligent systems meet practical utility.
+              </p>
+            </Reveal>
 
-          <Reveal delay={0.5}>
-            <p
-              style={{
-                fontSize: "1.15rem",
-                fontWeight: 500,
-                color: "var(--text)",
-                lineHeight: 1.85,
-              }}
-            >
-              Right now, I&apos;m preparing for the{" "}
-              <span style={{ color: "var(--primary)", fontWeight: 700 }}>
-                Smart India Hackathon
-              </span>
-              , contributing to open source, and actively looking for environments where
-              I can learn fast and contribute meaningfully.
-            </p>
-          </Reveal>
+            <Reveal delay={0.5}>
+              <p
+                style={{
+                  fontSize: "1.15rem",
+                  fontWeight: 500,
+                  color: "var(--text)",
+                  lineHeight: 1.85,
+                }}
+              >
+                Right now, I&apos;m preparing for the{" "}
+                <span style={{ color: "var(--primary)", fontWeight: 700 }}>
+                  Smart India Hackathon
+                </span>
+                , contributing to open source, and actively looking for environments where
+                I can learn fast and contribute meaningfully.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Right Column: Video Avatar */}
+          <div className="about-avatar-container">
+            <Reveal delay={0.3}>
+              <div className="avatar-wrapper">
+                <video
+                  src="/avatar.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="avatar-video"
+                />
+              </div>
+            </Reveal>
+          </div>
         </div>
 
         {/* Fun facts row */}
@@ -96,7 +115,7 @@ export default function About() {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
               gap: "16px",
-              marginTop: "48px",
+              marginTop: "56px",
             }}
           >
             {[
@@ -138,6 +157,75 @@ export default function About() {
           </div>
         </Reveal>
       </div>
+
+      <style jsx global>{`
+        .about-content-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 48px;
+          align-items: center;
+        }
+        .about-avatar-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .avatar-wrapper {
+          position: relative;
+          width: 280px;
+          height: 280px;
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+          border: 1px solid var(--glass-border);
+          box-shadow: var(--shadow-md);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          background: var(--glass);
+        }
+        .avatar-wrapper::before {
+          content: "";
+          position: absolute;
+          inset: 0px;
+          border-radius: var(--radius-xl);
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          z-index: -1;
+          opacity: 0.3;
+          transition: opacity 0.5s ease;
+          padding: 2px;
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+        }
+        .avatar-wrapper:hover {
+          transform: scale(1.03) translateY(-4px);
+          box-shadow: var(--shadow-glow);
+          border-color: transparent;
+        }
+        .avatar-wrapper:hover::before {
+          opacity: 1;
+        }
+        .avatar-video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: calc(var(--radius-xl) - 2px);
+          background: #000;
+        }
+        @media (max-width: 868px) {
+          .about-content-grid {
+            grid-template-columns: 1fr;
+            gap: 36px;
+          }
+          .about-avatar-container {
+            order: -1;
+            margin-bottom: 12px;
+          }
+          .avatar-wrapper {
+            width: 220px;
+            height: 220px;
+          }
+        }
+      `}</style>
     </section>
   );
 }
