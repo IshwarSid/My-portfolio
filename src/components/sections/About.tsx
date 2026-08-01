@@ -161,7 +161,7 @@ export default function About() {
       <style jsx global>{`
         .about-content-grid {
           display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
+          grid-template-columns: 1.15fr 0.85fr;
           gap: 48px;
           align-items: center;
         }
@@ -169,12 +169,14 @@ export default function About() {
           display: flex;
           justify-content: center;
           align-items: center;
+          width: 100%;
         }
         .avatar-wrapper {
           position: relative;
-          width: 280px;
-          height: 280px;
-          border-radius: var(--radius-xl);
+          width: 100%;
+          max-width: 440px;
+          aspect-ratio: 16 / 9;
+          border-radius: var(--radius-lg);
           overflow: hidden;
           border: 1px solid var(--glass-border);
           box-shadow: var(--shadow-md);
@@ -185,7 +187,7 @@ export default function About() {
           content: "";
           position: absolute;
           inset: 0px;
-          border-radius: var(--radius-xl);
+          border-radius: var(--radius-lg);
           background: linear-gradient(135deg, var(--primary), var(--secondary));
           z-index: -1;
           opacity: 0.3;
@@ -208,7 +210,7 @@ export default function About() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: calc(var(--radius-xl) - 2px);
+          border-radius: calc(var(--radius-lg) - 2px);
           background: #000;
         }
         @media (max-width: 868px) {
@@ -221,8 +223,7 @@ export default function About() {
             margin-bottom: 12px;
           }
           .avatar-wrapper {
-            width: 220px;
-            height: 220px;
+            max-width: 360px;
           }
         }
       `}</style>
